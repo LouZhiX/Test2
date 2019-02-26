@@ -30,3 +30,18 @@ def area(request):
     areaChild = AreaInfo.objects.filter(areaParent__areaName='潜江市')
 
     return render(request, 'booktest/area.html', {'Parent' : Parent, 'areaChild':areaChild})
+
+def login(request):
+    return render(request, 'booktest/login.html')
+
+
+def loginCheck(request):
+    #request.POST和request.GET两种不同的请求方式：
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+
+    if username == 'admin' and password == '123456':
+        return redirect('/area')
+    else:
+        return redirect('/login')
+
